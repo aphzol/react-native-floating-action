@@ -16,7 +16,7 @@ class FloatingActionItem extends Component {
     if (prevProps.active !== active && animated) {
       Animated.spring(this.animation, {
         toValue: active ? 1 : 0,
-        useNativeDriver: false
+        useNativeDriver: true
       }).start();
     }
   }
