@@ -85,14 +85,14 @@ class FloatingAction extends Component {
     if (prevProps.visible !== visible) {
       if (visible) {
         Animated.parallel([
-          Animated.spring(this.visibleAnimation, { toValue: 0, useNativeDriver: false }),
-          Animated.spring(this.fadeAnimation, { toValue: 1, useNativeDriver: false })
+          Animated.spring(this.visibleAnimation, { toValue: 0, useNativeDriver: true }),
+          Animated.spring(this.fadeAnimation, { toValue: 1, useNativeDriver: true })
         ]).start();
       }
       if (!visible) {
         Animated.parallel([
-          Animated.spring(this.visibleAnimation, { toValue: 1, useNativeDriver: false }),
-          Animated.spring(this.fadeAnimation, { toValue: 0, useNativeDriver: false })
+          Animated.spring(this.visibleAnimation, { toValue: 1, useNativeDriver: true }),
+          Animated.spring(this.fadeAnimation, { toValue: 0, useNativeDriver: true })
         ]).start();
       }
     }
@@ -135,13 +135,13 @@ class FloatingAction extends Component {
           height -
           (isIphoneX() ? 40 : 0),
         duration: 250,
-        useNativeDriver: false
+        useNativeDriver: true
       }),
       Animated.spring(this.mainBottomAnimation, {
         bounciness: 0,
         toValue: this.distanceToVerticalEdge + height - (isIphoneX() ? 40 : 0),
         duration: 250,
-        useNativeDriver: false
+        useNativeDriver: true
       })
     ]).start();
   };
@@ -154,13 +154,13 @@ class FloatingAction extends Component {
         bounciness: 0,
         toValue: buttonSize + this.distanceToVerticalEdge + actionsPaddingTopBottom,
         duration: 250,
-        useNativeDriver: false
+        useNativeDriver: true
       }),
       Animated.spring(this.mainBottomAnimation, {
         bounciness: 0,
         toValue: this.distanceToVerticalEdge,
         duration: 250,
-        useNativeDriver: false
+        useNativeDriver: true
       })
     ]).start();
   };
@@ -215,8 +215,8 @@ class FloatingAction extends Component {
     const { animated, onClose } = this.props;
 
     if (animated) {
-      Animated.spring(this.animation, { toValue: 0, useNativeDriver: false }).start();
-      Animated.spring(this.actionsAnimation, { toValue: 0, useNativeDriver: false }).start();
+      Animated.spring(this.animation, { toValue: 0, useNativeDriver: true }).start();
+      Animated.spring(this.actionsAnimation, { toValue: 0, useNativeDriver: true }).start();
     }
     this.updateState(
       {
@@ -259,12 +259,12 @@ class FloatingAction extends Component {
     if (!active) {
       if (!floatingIcon) {
         if (animated) {
-          Animated.spring(this.animation, { toValue: 1, useNativeDriver: false }).start();
+          Animated.spring(this.animation, { toValue: 1, useNativeDriver: true }).start();
         }
       }
 
       if (animated) {
-        Animated.spring(this.actionsAnimation, { toValue: 1, useNativeDriver: false }).start();
+        Animated.spring(this.actionsAnimation, { toValue: 1, useNativeDriver: true }).start();
 
         // only execute it for the background to prevent extra calls
         LayoutAnimation.configureNext({
